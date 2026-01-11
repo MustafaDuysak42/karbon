@@ -1,0 +1,9 @@
+{
+  "name": "cbam/panel",
+  "description": "CBAM Yönetim Paneli",
+  "require": {
+    "php": ">=8.2",
+    "ext-pdo": "*",
+    "phpoffice/phpspreadsheet": "^1.29"
+  }
+}

@@ -1,0 +1,32 @@
+karbon/
+├─ config.php
+├─ database/
+│  ├─ schema.sql
+│  └─ seed.sql
+├─ docs/
+│  └─ file-tree.txt
+├─ public/
+│  ├─ index.php
+│  ├─ login.php
+│  ├─ logout.php
+│  └─ pages/
+│     ├─ assignments.php
+│     ├─ calculations.php
+│     ├─ companies.php
+│     ├─ export.php
+│     ├─ factors.php
+│     ├─ facilities.php
+│     ├─ inputs.php
+│     ├─ lineage.php
+│     ├─ periods.php
+│     ├─ products.php
+│     └─ users.php
+├─ src/
+│  ├─ Auth.php
+│  ├─ Database.php
+│  └─ Rbac.php
+├─ storage/
+│  └─ exports/
+│     └─ .gitkeep
+└─ views/
+   └─ layout.php
