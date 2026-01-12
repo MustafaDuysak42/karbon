@@ -61,6 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $path = $excel->generateReport($installation, $processes, $summary);
                         $creditManager->consume($user['id']);
                         $download = '/reports/' . basename($path);
+                        $insertReport = $pdo->prepare('INSERT INTO reports (installation_id, user_id, file_path) VALUES (:installation_id, :user_id, :file_path)');
+                        $insertReport->execute([
+                            'installation_id' => $installationId,
+                            'user_id' => $user['id'],
+                            'file_path' => $download,
+                        ]);
                         $message = 'Rapor oluşturuldu.';
                     } catch (RuntimeException $exception) {
                         $message = $exception->getMessage();

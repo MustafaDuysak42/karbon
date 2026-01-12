@@ -60,6 +60,9 @@ require __DIR__ . '/partials/header.php';
                     </div>
                     <button class="btn btn-primary w-100">Giriş Yap</button>
                 </form>
+                <div class="mt-3 text-center">
+                    <a href="/forgot.php">Şifremi unuttum</a>
+                </div>
             </div>
         </div>
     </div>
