@@ -22,7 +22,7 @@ if ($user) {
         header('Location: /admin/consultants.php');
         exit;
     }
-    header('Location: /consultant/installations.php');
+    header('Location: /consultant/dashboard.php');
     exit;
 }
 

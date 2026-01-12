@@ -49,6 +49,7 @@ if ($user && $user['role'] === 'consultant') {
                         <li class="nav-item"><a class="nav-link" href="/admin/packages.php">Paketler</a></li>
                     <?php endif; ?>
                     <?php if ($user['role'] === 'consultant'): ?>
+                        <li class="nav-item"><a class="nav-link" href="/consultant/dashboard.php">Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link" href="/consultant/installations.php">Tesisler</a></li>
                         <li class="nav-item"><a class="nav-link" href="/consultant/report.php">Rapor Oluştur</a></li>
                         <li class="nav-item"><a class="nav-link" href="/consultant/reports.php">Rapor Geçmişi</a></li>
