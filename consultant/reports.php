@@ -39,12 +39,17 @@ require __DIR__ . '/../partials/header.php';
                     </tr>
                 <?php endif; ?>
                 <?php foreach ($reports as $report): ?>
+                    <?php $fileExists = file_exists(__DIR__ . '/..' . $report['file_path']); ?>
                     <tr>
                         <td><?php echo (int)$report['id']; ?></td>
                         <td><?php echo htmlspecialchars($report['installation_name']); ?></td>
                         <td><?php echo htmlspecialchars($report['created_at']); ?></td>
                         <td>
-                            <a class="btn btn-sm btn-outline-success" href="<?php echo htmlspecialchars($report['file_path']); ?>">İndir</a>
+                            <?php if ($fileExists): ?>
+                                <a class="btn btn-sm btn-outline-success" href="<?php echo htmlspecialchars($report['file_path']); ?>">İndir</a>
+                            <?php else: ?>
+                                <span class="text-muted">Dosya yok</span>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

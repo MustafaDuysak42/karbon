@@ -57,19 +57,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $summary = $engine->calculate($processes, $emissions);
 
                     try {
+                        $pdo->beginTransaction();
                         $excel = new ExcelService(__DIR__ . '/../template/cbam_clean.xlsx', __DIR__ . '/../reports');
                         $path = $excel->generateReport($installation, $processes, $summary);
-                        $creditManager->consume($user['id']);
                         $download = '/reports/' . basename($path);
+
                         $insertReport = $pdo->prepare('INSERT INTO reports (installation_id, user_id, file_path) VALUES (:installation_id, :user_id, :file_path)');
                         $insertReport->execute([
                             'installation_id' => $installationId,
                             'user_id' => $user['id'],
                             'file_path' => $download,
                         ]);
+
+                        $creditManager->consume($user['id']);
+                        $pdo->commit();
+
                         $message = 'Rapor oluşturuldu.';
                     } catch (RuntimeException $exception) {
+                        if ($pdo->inTransaction()) {
+                            $pdo->rollBack();
+                        }
                         $message = $exception->getMessage();
+                    } catch (Throwable $exception) {
+                        if ($pdo->inTransaction()) {
+                            $pdo->rollBack();
+                        }
+                        $message = 'Rapor oluşturulurken beklenmeyen bir hata oluştu.';
                     }
                 }
             }

@@ -11,10 +11,10 @@ if ($user && $user['role'] === 'consultant') {
         $remaining = (int)$subscription['total_reports'] - (int)$subscription['used_reports'];
         $expiryDate = $subscription['expiry_date'];
         $daysLeft = (int)floor((strtotime($expiryDate) - strtotime(date('Y-m-d'))) / 86400);
-        if ($daysLeft < 0) {
+        if ($daysLeft < 0 || $remaining <= 0) {
             $subscriptionNotice = [
                 'type' => 'danger',
-                'message' => 'Paket süreniz doldu. Lütfen admin ile iletişime geçin.',
+                'message' => 'Paketiniz aktif değil veya rapor hakkınız kalmadı. Lütfen admin ile iletişime geçin.',
             ];
         } elseif ($daysLeft <= 7) {
             $subscriptionNotice = [
